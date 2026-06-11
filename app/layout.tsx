@@ -25,7 +25,7 @@ const italianno = Italianno({
 })
 
 export const metadata: Metadata = {
-  title: 'Igor & Ana Caroline · 12 de Setembro de 2026',
+  title: 'Igor & Ana · 24 de Setembro de 2026',
   description: 'Celebre conosco o nosso casamento em Trancoso, Bahia.',
 }
 
