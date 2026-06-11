@@ -65,7 +65,7 @@ export default function HomePage() {
   const [pixAmount, setPixAmount] = useState(100)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const wedding = new Date('2026-09-12T16:30:00-03:00')
+  const wedding = new Date('2026-09-24T16:30:00-03:00')
   const countdown = useCountdown(wedding)
   useReveal()
 
@@ -157,7 +157,14 @@ export default function HomePage() {
       >
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-center relative">
           <ul className="hidden md:flex items-center gap-10 text-[11.5px] tracking-[0.32em] uppercase font-medium nav-list">
-            {[['#hero','Home'],['#historia','O Casal'],['#programacao','Programação'],['#localizacao','Cerimônia'],['#presentes','Lista de Presentes'],['#rsvp','Confirme sua Presença']].map(([href, label]) => (
+            {[
+              ['#hero','Home'],
+              // ['#historia','O Casal'],
+              ['#programacao','Programação'],
+              ['#localizacao','Cerimônia'],
+              ['#presentes','Lista de Presentes'],
+              ['#rsvp','Confirme sua Presença'],
+            ].map(([href, label]) => (
               <li key={href}><a className="nav-link" href={href}>{label}</a></li>
             ))}
           </ul>
@@ -176,7 +183,14 @@ export default function HomePage() {
       {/* MOBILE MENU */}
       <div className={`${mobileOpen ? 'open' : ''}`} id="mobile-menu">
         <button id="mobile-menu-close" onClick={() => setMobileOpen(false)}>✕</button>
-        {[['#hero','Home'],['#historia','O Casal'],['#programacao','Programação'],['#localizacao','Cerimônia'],['#presentes','Lista de Presentes'],['#rsvp','Confirme sua Presença']].map(([href, label]) => (
+        {[
+          ['#hero','Home'],
+          // ['#historia','O Casal'],
+          ['#programacao','Programação'],
+          ['#localizacao','Cerimônia'],
+          ['#presentes','Lista de Presentes'],
+          ['#rsvp','Confirme sua Presença'],
+        ].map(([href, label]) => (
           <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>
         ))}
       </div>
@@ -185,7 +199,7 @@ export default function HomePage() {
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <Image
           src="/foto4.jpg"
-          alt="Igor e Ana Caroline"
+          alt="Igor e Ana"
           fill
           priority
           className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
@@ -197,13 +211,14 @@ export default function HomePage() {
           style={{ background: 'linear-gradient(to bottom, rgba(31,36,24,.20), rgba(31,36,24,.15), rgba(31,36,24,.55))' }}
         />
 
+
         <div className="relative z-10 text-center text-paper px-6 max-w-4xl w-full">
           {/* Monogram */}
-          <div className="relative inline-flex items-center justify-center mb-10 md:mb-12">
-            <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[320px] md:h-[320px]">
+          <div className="relative hidden md:inline-flex items-center justify-center mb-10 md:mb-12">
+            <div className="relative w-[160px] h-[160px] sm:w-[260px] sm:h-[260px] md:w-[320px] md:h-[320px]">
               <div className="absolute inset-0 border border-paper/90" />
               <svg
-                className="absolute -left-3 top-1/2 -translate-y-1/2 w-24 sm:w-28 md:w-36 text-paper"
+                className="absolute -left-3 top-1/2 -translate-y-1/2 w-16 sm:w-28 md:w-36 text-paper"
                 viewBox="0 0 100 240" aria-hidden="true"
               >
                 <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round">
@@ -223,31 +238,31 @@ export default function HomePage() {
                   <circle cx="50" cy="14" r="2.6" fill="currentColor" />
                 </g>
               </svg>
-              <div className="absolute inset-0 flex items-center justify-center pl-10 md:pl-12">
+              <div className="absolute inset-0 flex items-center justify-center pl-7 sm:pl-10 md:pl-12">
                 <div
-                  className="font-serif text-paper leading-none flex items-center gap-2 sm:gap-3"
+                  className="font-serif text-paper leading-none flex items-center gap-1 sm:gap-2 sm:gap-3"
                   style={{ textShadow: '0 2px 24px rgba(0,0,0,0.4)', fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
-                  <span className="text-[68px] sm:text-[84px] md:text-[112px] tracking-tight">I</span>
-                  <span className="text-[28px] sm:text-[36px] md:text-[46px] text-paper/80 -translate-y-2">·</span>
-                  <span className="text-[68px] sm:text-[84px] md:text-[112px] tracking-tight">C</span>
+                  <span className="text-[48px] sm:text-[84px] md:text-[112px] tracking-tight">I</span>
+                  <span className="text-[20px] sm:text-[36px] md:text-[46px] text-paper/80 -translate-y-2">·</span>
+                  <span className="text-[48px] sm:text-[84px] md:text-[112px] tracking-tight">A</span>
                 </div>
               </div>
             </div>
           </div>
 
           <h1
-            className="font-serif text-paper tracking-[0.22em] md:tracking-[0.32em] uppercase font-normal text-[22px] sm:text-[32px] md:text-[44px] lg:text-[52px] leading-tight"
+            className="hidden md:block font-serif text-paper tracking-[0.22em] md:tracking-[0.32em] uppercase font-normal text-[22px] sm:text-[32px] md:text-[44px] lg:text-[52px] leading-tight"
             style={{ textShadow: '0 2px 28px rgba(0,0,0,0.5)', fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            Igor &nbsp;e&nbsp; Ana Caroline
+            Igor &nbsp;e&nbsp; Ana
           </h1>
 
           <div
-            className="mt-5 md:mt-7 flex items-center justify-center gap-3 sm:gap-4 text-paper font-serif text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.18em]"
+            className="mt-1 md:mt-7 flex items-center justify-center gap-3 sm:gap-4 text-paper font-serif text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.18em] bg-black/25 md:bg-transparent px-6 py-2 md:px-0 md:py-0"
             style={{ textShadow: '0 2px 18px rgba(0,0,0,0.45)', fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            <span>12</span>
+            <span>24</span>
             <span className="text-paper/70">|</span>
             <span>09</span>
             <span className="text-paper/70">|</span>
@@ -276,7 +291,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ NOSSA HISTÓRIA ═══ */}
-      <section id="historia" className="py-32 px-6 bg-cream">
+      {/* <section id="historia" className="py-32 px-6 bg-cream">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20 reveal">
             <div className="eyebrow">Capítulo um</div>
@@ -293,13 +308,13 @@ export default function HomePage() {
           <div className="relative">
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px timeline-line -translate-x-1/2" />
 
-            {/* Item 1 */}
+            Item 1
             <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-center mb-20 reveal">
               <div className="md:text-right md:order-1 order-2">
                 <div className="eyebrow text-gold mb-3">Outubro · 2019</div>
                 <h3 className="font-serif italic text-3xl mb-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>O primeiro café.</h3>
                 <p className="text-inkSoft leading-relaxed">
-                  A Ana Caroline pediu um cappuccino, o Igor pediu um expresso duplo e
+                  A Ana pediu um cappuccino, o Igor pediu um expresso duplo e
                   uma desculpa para puxar conversa. Saíram da cafeteria com
                   o número um do outro — e uma certeza meio nervosa no peito.
                 </p>
@@ -310,7 +325,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Item 2 */}
+            Item 2
             <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-center mb-20 reveal">
               <div className="relative">
                 <span className="hidden md:block absolute -right-[42px] top-6 w-3 h-3 rounded-full bg-gold ring-4 ring-cream" />
@@ -327,7 +342,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Item 3 */}
+            Item 3
             <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-center reveal">
               <div className="md:text-right md:order-1 order-2">
                 <div className="eyebrow text-gold mb-3">Dezembro · 2025</div>
@@ -346,7 +361,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ═══ PROGRAMAÇÃO ═══ */}
       <section id="programacao" className="py-32 px-6 bg-paper">
@@ -366,12 +381,12 @@ export default function HomePage() {
           <div className="bg-cream border border-sand p-8 md:p-12">
             {[
               { time: '15:30', title: 'Recepção dos convidados', joke: 'Espumante, leques e uma chance de pegar lugar bom no corredor.', icon: '☘' },
-              { time: '16:30', title: 'Cerimônia religiosa', joke: 'A Ana Caroline entra pontualmente. O Igor entra pontualmente. (é contratual.)', icon: '✝' },
+              { time: '16:30', title: 'Cerimônia religiosa', joke: 'A Ana entra pontualmente. O Igor entra pontualmente. (é contratual.)', icon: '✝' },
               { time: '17:30', title: 'Sessão de fotos & coquetel', joke: 'Tirem todas as fotos com a sogra agora. Depois ela vai estar dançando.', icon: '❝' },
-              { time: '19:00', title: 'Jantar de boas-vindas', joke: 'Cardápio aprovado em votação unânime do casal (ou seja: a Ana Caroline escolheu).', icon: '🍽' },
-              { time: '21:00', title: 'Valsa & brindes', joke: 'Discurso do padrinho com aviso de spoiler: ele guardou histórias por anos.', icon: '🥂' },
-              { time: '22:30', title: 'Pista aberta', joke: 'Política de uso: pode dançar mal, não pode dançar pouco.', icon: '♪' },
-              { time: '02:00', title: 'Hora do bolo & "batata frita salvadora"', joke: 'Tradição de família: ninguém vai embora sem batata frita às 2 da manhã.', icon: '🍰' },
+              { time: '19:00', title: 'Jantar de boas-vindas', joke: 'Cardápio aprovado em votação unânime do casal (ou seja: a Ana escolheu).', icon: '🍽' },
+              { time: '21:00', title: 'Encerramento', joke: 'Valsa, brindes e o encerramento oficial desta noite inesquecível.', icon: '🥂' },
+              // { time: '22:30', title: 'Pista aberta', joke: 'Política de uso: pode dançar mal, não pode dançar pouco.', icon: '♪' },
+              // { time: '02:00', title: 'Hora do bolo & "batata frita salvadora"', joke: 'Tradição de família: ninguém vai embora sem batata frita às 2 da manhã.', icon: '🍰' },
             ].map((row) => (
               <div className="schedule-row" key={row.time}>
                 <div className="time">{row.time}</div>
@@ -384,7 +399,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-8 text-center reveal">
+          {/* <div className="mt-8 text-center reveal">
             <div className="inline-block bg-eucal/10 border border-eucal/30 px-6 py-4">
               <div className="eyebrow text-eucalDk">Avisório importante</div>
               <p className="font-serif italic text-inkSoft mt-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
@@ -392,7 +407,7 @@ export default function HomePage() {
                 Recomendamos sapatilha de reserva na bolsa."
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -406,7 +421,7 @@ export default function HomePage() {
             </h2>
             <div className="hair mt-6 max-w-xs mx-auto"><span>✰</span></div>
             <p className="mt-6 max-w-xl mx-auto text-inkSoft text-lg leading-relaxed">
-              Cerimônia e festa no Condomínio Foz do Joanes, em Lauro de Freitas.
+              Cerimônia e festa no Cerimonial Casa Rio.
               <span className="block italic text-mute text-base mt-2">Cheguem cedo, o lugar é lindo.</span>
             </p>
           </div>
@@ -416,7 +431,7 @@ export default function HomePage() {
             <div className="relative aspect-[4/3] overflow-hidden shadow-xl reveal" style={{ border: '1px solid rgba(124,139,63,0.25)' }}>
               <Image
                 src="/local.jpg"
-                alt="Condominio Foz do Joanes"
+                alt="Cerimonial Casa Rio"
                 fill
                 className="object-cover"
                 style={{ objectFit: 'cover' }}
@@ -426,13 +441,8 @@ export default function HomePage() {
             <div className="reveal">
               <div className="eyebrow text-eucalDk">Cerimônia &amp; Recepção</div>
               <h3 className="font-serif italic text-4xl mt-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-                Condominio Foz do Joanes
+                Cerimonial Casa Rio
               </h3>
-              <p className="mt-3 text-inkSoft text-lg leading-relaxed">
-                R. João Marques Oliveira, 53<br />
-                Buraquinho · Lauro de Freitas – BA<br />
-                CEP 42710-170
-              </p>
 
               <div className="mt-8 grid grid-cols-3 divide-x divide-sand border-y border-sand py-5">
                 {[
@@ -450,7 +460,7 @@ export default function HomePage() {
 
               <div className="mt-8 space-y-3">
                 <a
-                  href="https://maps.google.com/?q=R.+João+Marques+Oliveira,+53+Buraquinho+Lauro+de+Freitas+BA"
+                  href="https://maps.google.com/?q=Cerimonial+Casa+Rio"
                   target="_blank"
                   rel="noopener"
                   className="flex items-center justify-between bg-eucal text-paper px-5 py-4 hover:bg-eucalDk transition group"
@@ -465,7 +475,7 @@ export default function HomePage() {
                   <span className="text-[11px] tracking-[0.24em] uppercase opacity-70 group-hover:opacity-100">→</span>
                 </a>
                 <a
-                  href="https://waze.com/ul?q=R.+João+Marques+Oliveira+53+Lauro+de+Freitas+BA"
+                  href="https://waze.com/ul?q=Cerimonial+Casa+Rio"
                   target="_blank"
                   rel="noopener"
                   className="flex items-center justify-between border border-eucal text-eucalDk px-5 py-4 hover:bg-eucal/10 transition group"
@@ -496,7 +506,7 @@ export default function HomePage() {
               </div>
 
               <p className="mt-8 text-mute italic text-sm border-l-2 border-gold/60 pl-4">
-                ZAP: <strong className="text-eucalDk not-italic">(71) 99999</strong> · Condominio Foz do Joanes, Buraquinho, Lauro de Freitas.
+                ZAP: <strong className="text-eucalDk not-italic">(71) 99999</strong> · Cerimonial Casa Rio.
               </p>
             </div>
           </div>
@@ -732,12 +742,12 @@ export default function HomePage() {
           }
         }}
       >
-        <div className="font-script text-7xl text-eucalDk leading-none" style={{ fontFamily: "'Italianno', cursive" }}>Igor &amp; Ana Caroline</div>
+        <div className="font-script text-7xl text-eucalDk leading-none" style={{ fontFamily: "'Italianno', cursive" }}>Igor &amp; Ana</div>
         <p className="font-serif italic text-inkSoft text-lg mt-6 max-w-md mx-auto" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           "Que o Senhor faça crescer e exceder o vosso amor uns para com os outros."
         </p>
         <p className="eyebrow text-gold mt-3">1 Tessalonicenses 3:12</p>
-        <p className="eyebrow text-mute mt-10">— 12 · 09 · 2026 · Trancoso · BA —</p>
+        <p className="eyebrow text-mute mt-10">— 24 · 09 · 2026 · Trancoso · BA —</p>
       </footer>
 
       {/* TOAST */}
