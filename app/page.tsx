@@ -24,6 +24,8 @@ function useCountdown(target: Date): CountdownTime {
   return time
 }
 
+const pad = (n: number) => String(n).padStart(2, '0')
+
 /* ── Reveal-on-scroll hook ── */
 function useReveal() {
   useEffect(() => {
@@ -102,7 +104,7 @@ export default function HomePage() {
   }
 
   const copyPix = async (btn: EventTarget & HTMLButtonElement) => {
-    const key = 'igorecarol@casamento.com'
+    const key = 'igoreana212@gmail.com'
     const keyEl = btn.querySelector('.pix-key')
     if (!keyEl) return
     const orig = keyEl.textContent || ''
@@ -121,7 +123,7 @@ export default function HomePage() {
       showToast('Mínimo R$ 100', '— vai, mão de vaca, dá pra mais!')
       return
     }
-    if (navigator.clipboard) navigator.clipboard.writeText('igorecarol@casamento.com').catch(() => {})
+    if (navigator.clipboard) navigator.clipboard.writeText('igoreana212@gmail.com').catch(() => {})
     showToast(`R$ ${v.toFixed(0)} via Pix`, '— chave copiada! muito obrigado 💚')
   }
 
@@ -145,8 +147,6 @@ export default function HomePage() {
     e.target.value = v
   }
 
-  const pad = (n: number) => String(n).padStart(2, '0')
-
   /* ── render ── */
   return (
     <>
@@ -155,7 +155,7 @@ export default function HomePage() {
         id="main-nav"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300${navScrolled ? ' scrolled' : ''}`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-center relative">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-center relative mt-[26px]">
           <ul className="hidden md:flex items-center gap-10 text-[11.5px] tracking-[0.32em] uppercase font-medium nav-list">
             {[
               ['#hero','Home'],
@@ -196,98 +196,50 @@ export default function HomePage() {
       </div>
 
       {/* ═══ HERO ═══ */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <Image
-          src="/foto4.jpg"
-          alt="Igor e Ana"
-          fill
-          priority
-          className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-        />
-        <div
-          className="absolute inset-0"
-          aria-hidden="true"
-          style={{ background: 'linear-gradient(to bottom, rgba(31,36,24,.20), rgba(31,36,24,.15), rgba(31,36,24,.55))' }}
-        />
+      <section id="hero" className="relative min-h-screen flex flex-col">
 
-
-        <div className="relative z-10 text-center text-paper px-6 max-w-4xl w-full">
-          {/* Monogram */}
-          <div className="relative hidden md:inline-flex items-center justify-center mb-10 md:mb-12">
-            <div className="relative w-[160px] h-[160px] sm:w-[260px] sm:h-[260px] md:w-[320px] md:h-[320px]">
-              <div className="absolute inset-0 border border-paper/90" />
-              <svg
-                className="absolute -left-3 top-1/2 -translate-y-1/2 w-16 sm:w-28 md:w-36 text-paper"
-                viewBox="0 0 100 240" aria-hidden="true"
-              >
-                <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round">
-                  <path d="M50 232 L50 14" />
-                  <ellipse cx="38" cy="210" rx="11" ry="3.6" transform="rotate(-30 38 210)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="33" cy="178" rx="13" ry="4" transform="rotate(-42 33 178)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="37" cy="148" rx="11" ry="3.6" transform="rotate(-26 37 148)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="34" cy="116" rx="12" ry="4" transform="rotate(-38 34 116)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="39" cy="84" rx="10" ry="3.4" transform="rotate(-22 39 84)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="36" cy="54" rx="11" ry="3.6" transform="rotate(-32 36 54)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="62" cy="196" rx="11" ry="3.6" transform="rotate(30 62 196)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="67" cy="164" rx="13" ry="4" transform="rotate(42 67 164)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="63" cy="132" rx="11" ry="3.6" transform="rotate(26 63 132)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="66" cy="100" rx="12" ry="4" transform="rotate(38 66 100)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="61" cy="70" rx="10" ry="3.4" transform="rotate(22 61 70)" fill="currentColor" opacity="0.85" />
-                  <ellipse cx="64" cy="40" rx="11" ry="3.6" transform="rotate(32 64 40)" fill="currentColor" opacity="0.85" />
-                  <circle cx="50" cy="14" r="2.6" fill="currentColor" />
-                </g>
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center pl-7 sm:pl-10 md:pl-12">
-                <div
-                  className="font-serif text-paper leading-none flex items-center gap-1 sm:gap-2 sm:gap-3"
-                  style={{ textShadow: '0 2px 24px rgba(0,0,0,0.4)', fontFamily: "'Playfair Display', Georgia, serif" }}
-                >
-                  <span className="text-[48px] sm:text-[84px] md:text-[112px] tracking-tight">I</span>
-                  <span className="text-[20px] sm:text-[36px] md:text-[46px] text-paper/80 -translate-y-2">·</span>
-                  <span className="text-[48px] sm:text-[84px] md:text-[112px] tracking-tight">A</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h1
-            className="hidden md:block font-serif text-paper tracking-[0.22em] md:tracking-[0.32em] uppercase font-normal text-[22px] sm:text-[32px] md:text-[44px] lg:text-[52px] leading-tight"
-            style={{ textShadow: '0 2px 28px rgba(0,0,0,0.5)', fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
-            Igor &nbsp;e&nbsp; Ana
-          </h1>
-
+        {/* Fundo */}
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src="/foto4.jpg"
+            alt="Igor e Ana"
+            fill
+            priority
+            className="w-full h-full object-cover object-center select-none pointer-events-none"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
           <div
-            className="mt-1 md:mt-7 flex items-center justify-center gap-3 sm:gap-4 text-paper font-serif text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.18em] bg-black/25 md:bg-transparent px-6 py-2 md:px-0 md:py-0"
-            style={{ textShadow: '0 2px 18px rgba(0,0,0,0.45)', fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
-            <span>24</span>
-            <span className="text-paper/70">|</span>
-            <span>09</span>
-            <span className="text-paper/70">|</span>
-            <span>2026</span>
-          </div>
+            className="absolute inset-0"
+            aria-hidden="true"
+            style={{ background: 'linear-gradient(to bottom, rgba(31,36,24,.20), rgba(31,36,24,.15), rgba(31,36,24,.55))' }}
+          />
+        </div>
 
-          {/* COUNTDOWN */}
-          <div className="mt-9 md:mt-12">
-            <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.92)', textShadow: '0 1px 12px rgba(0,0,0,0.45)' }}>
-              Faltam para o nosso sim
-            </div>
-            <div id="countdown" className="mt-5 grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-2xl mx-auto">
-              <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.d) : '--'}</div><div className="cd-label">dias</div></div>
-              <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.h) : '--'}</div><div className="cd-label">horas</div></div>
-              <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.m) : '--'}</div><div className="cd-label">minutos</div></div>
-              <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.s) : '--'}</div><div className="cd-label">segundos</div></div>
-            </div>
+        {/* ── MOBILE: topo — data + monogram ── */}
+        <div className="md:hidden relative z-10 flex flex-col items-center pt-[110px] text-paper">
+          <HeroData className="text-[16px] bg-black/25 px-6 py-2" />
+          <div className="mt-4">
+            <HeroMonogram boxSize={120} svgWidth={48} letterSize={38} dotSize={14} pl={16} />
           </div>
         </div>
 
-        {/* Scroll cue */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-3">
-          <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)' }}>role</span>
-          <span className="w-px h-10 bg-paper/60" />
+        {/* ── MOBILE: spacer ── */}
+        <div className="md:hidden flex-1" />
+
+        {/* ── MOBILE: fundo — countdown ── */}
+        <div className="md:hidden relative z-10 px-6 pb-16 text-paper w-full">
+          <HeroCountdown countdown={countdown} gapClass="gap-2" />
         </div>
+
+        {/* ── DESKTOP: centro — monogram + data + countdown ── */}
+        <div className="hidden md:flex relative z-10 flex-1 flex-col items-center justify-center text-paper px-6">
+          <HeroMonogram boxSize={400} svgWidth={180} letterSize={140} dotSize={58} pl={48} />
+          <HeroData className="text-[26px] mt-7" />
+          <div className="mt-12 w-full max-w-2xl">
+            <HeroCountdown countdown={countdown} gapClass="gap-6" />
+          </div>
+        </div>
+
       </section>
 
       {/* ═══ NOSSA HISTÓRIA ═══ */}
@@ -372,19 +324,15 @@ export default function HomePage() {
               Programação
             </h2>
             <div className="hair mt-6 max-w-xs mx-auto"><span>✰</span></div>
-            <p className="mt-6 text-inkSoft text-lg leading-relaxed">
-              Anotem na agenda — e cheguem com fome.
-              <span className="block text-mute italic text-base mt-2">(o noivo prometeu que não se atrasa. veremos.)</span>
-            </p>
           </div>
 
           <div className="bg-cream border border-sand p-8 md:p-12">
             {[
-              { time: '15:30', title: 'Recepção dos convidados', joke: 'Espumante, leques e uma chance de pegar lugar bom no corredor.', icon: '☘' },
-              { time: '16:30', title: 'Cerimônia religiosa', joke: 'A Ana entra pontualmente. O Igor entra pontualmente. (é contratual.)', icon: '✝' },
-              { time: '17:30', title: 'Sessão de fotos & coquetel', joke: 'Tirem todas as fotos com a sogra agora. Depois ela vai estar dançando.', icon: '❝' },
-              { time: '19:00', title: 'Jantar de boas-vindas', joke: 'Cardápio aprovado em votação unânime do casal (ou seja: a Ana escolheu).', icon: '🍽' },
-              { time: '21:00', title: 'Encerramento', joke: 'Valsa, brindes e o encerramento oficial desta noite inesquecível.', icon: '🥂' },
+              { time: '15:30', title: 'Recepção dos convidados', icon: '☘' },
+              { time: '16:30', title: 'Cerimônia religiosa', icon: '✝' },
+              { time: '17:30', title: 'Sessão de fotos & coquetel', icon: '❝' },
+              { time: '19:00', title: 'Jantar de boas-vindas', icon: '🍽' },
+              { time: '21:00', title: 'Encerramento', icon: '🥂' },
               // { time: '22:30', title: 'Pista aberta', joke: 'Política de uso: pode dançar mal, não pode dançar pouco.', icon: '♪' },
               // { time: '02:00', title: 'Hora do bolo & "batata frita salvadora"', joke: 'Tradição de família: ninguém vai embora sem batata frita às 2 da manhã.', icon: '🍰' },
             ].map((row) => (
@@ -392,7 +340,6 @@ export default function HomePage() {
                 <div className="time">{row.time}</div>
                 <div>
                   <div className="title">{row.title}</div>
-                  <div className="joke">{row.joke}</div>
                 </div>
                 <div className="icon">{row.icon}</div>
               </div>
@@ -505,9 +452,6 @@ export default function HomePage() {
                 </a>
               </div>
 
-              <p className="mt-8 text-mute italic text-sm border-l-2 border-gold/60 pl-4">
-                ZAP: <strong className="text-eucalDk not-italic">(71) 99999</strong> · Cerimonial Casa Rio.
-              </p>
             </div>
           </div>
         </div>
@@ -747,7 +691,7 @@ export default function HomePage() {
           "Que o Senhor faça crescer e exceder o vosso amor uns para com os outros."
         </p>
         <p className="eyebrow text-gold mt-3">1 Tessalonicenses 3:12</p>
-        <p className="eyebrow text-mute mt-10">— 24 · 09 · 2026 · Trancoso · BA —</p>
+        <p className="eyebrow text-mute mt-10">24 · 09 · 2026 · Salvador · BA</p>
       </footer>
 
       {/* TOAST */}
@@ -756,10 +700,81 @@ export default function HomePage() {
   )
 }
 
+/* ── Hero sub-components ── */
+
+function HeroMonogram({ boxSize, svgWidth, letterSize, dotSize, pl }: {
+  boxSize: number; svgWidth: number; letterSize: number; dotSize: number; pl: number
+}) {
+  return (
+    <div className="relative" style={{ width: boxSize, height: boxSize }}>
+      <div className="absolute inset-0 border border-paper/90" />
+      <svg
+        className="absolute top-1/2 -translate-y-1/2 text-paper"
+        style={{ left: -12, width: svgWidth }}
+        viewBox="0 0 100 240"
+        aria-hidden="true"
+      >
+        <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round">
+          <path d="M50 232 L50 14" />
+          <ellipse cx="38" cy="210" rx="11" ry="3.6" transform="rotate(-30 38 210)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="33" cy="178" rx="13" ry="4" transform="rotate(-42 33 178)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="37" cy="148" rx="11" ry="3.6" transform="rotate(-26 37 148)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="34" cy="116" rx="12" ry="4" transform="rotate(-38 34 116)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="39" cy="84" rx="10" ry="3.4" transform="rotate(-22 39 84)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="36" cy="54" rx="11" ry="3.6" transform="rotate(-32 36 54)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="62" cy="196" rx="11" ry="3.6" transform="rotate(30 62 196)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="67" cy="164" rx="13" ry="4" transform="rotate(42 67 164)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="63" cy="132" rx="11" ry="3.6" transform="rotate(26 63 132)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="66" cy="100" rx="12" ry="4" transform="rotate(38 66 100)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="61" cy="70" rx="10" ry="3.4" transform="rotate(22 61 70)" fill="currentColor" opacity="0.85" />
+          <ellipse cx="64" cy="40" rx="11" ry="3.6" transform="rotate(32 64 40)" fill="currentColor" opacity="0.85" />
+          <circle cx="50" cy="14" r="2.6" fill="currentColor" />
+        </g>
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center" style={{ paddingLeft: pl }}>
+        <div
+          className="font-serif text-paper leading-none flex items-center"
+          style={{ gap: 4, textShadow: '0 2px 24px rgba(0,0,0,0.4)', fontFamily: "'Playfair Display', Georgia, serif" }}
+        >
+          <span style={{ fontSize: letterSize }} className="tracking-tight">I</span>
+          <span style={{ fontSize: dotSize }} className="text-paper/80 -translate-y-2">·</span>
+          <span style={{ fontSize: letterSize }} className="tracking-tight">A</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function HeroData({ className = '' }: { className?: string }) {
+  return (
+    <div
+      className={`flex items-center justify-center gap-3 font-serif tracking-[0.18em] text-paper ${className}`}
+      style={{ textShadow: '0 2px 18px rgba(0,0,0,0.45)', fontFamily: "'Playfair Display', Georgia, serif" }}
+    >
+      <span>24</span>
+      <span className="text-paper/70">|</span>
+      <span>09</span>
+      <span className="text-paper/70">|</span>
+      <span>2026</span>
+    </div>
+  )
+}
+
+function HeroCountdown({ countdown, gapClass = 'gap-6' }: { countdown: CountdownTime; gapClass?: string }) {
+  return (
+    <div className={`grid grid-cols-4 ${gapClass} max-w-2xl mx-auto`}>
+      <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.d) : '--'}</div><div className="cd-label">dias</div></div>
+      <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.h) : '--'}</div><div className="cd-label">horas</div></div>
+      <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.m) : '--'}</div><div className="cd-label">minutos</div></div>
+      <div className="cd-cell"><div className="cd-num">{countdown ? pad(countdown.s) : '--'}</div><div className="cd-label">segundos</div></div>
+    </div>
+  )
+}
+
 /* ── PixContribuir component (botão que copia a chave) ── */
 function PixContribuir({ amount, onToast }: { amount: number; onToast: (t: string, s: string) => void }) {
   const handleClick = () => {
-    const key = 'igorecarol@casamento.com'
+    const key = 'igoreana212@gmail.com'
     if (navigator.clipboard) navigator.clipboard.writeText(key).catch(() => {})
     onToast(`R$ ${amount} via Pix`, '— chave copiada! muito obrigado 💚')
   }
@@ -793,8 +808,8 @@ function PixLine() {
   return (
     <div className="pix-line">
       <span className="pix-label">chave Pix:</span>
-      <button type="button" className="pix-copy" data-pix="igorecarol@casamento.com" onClick={handleCopy}>
-        <span className="pix-key">igorecarol@casamento.com</span>
+      <button type="button" className="pix-copy" data-pix="igoreana212@gmail.com" onClick={handleCopy}>
+        <span className="pix-key">igoreana212@gmail.com</span>
         <span className="pix-copy-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <rect x="9" y="9" width="12" height="12" rx="2" />
