@@ -213,13 +213,13 @@ export default function HomePage() {
           />
         </div>
 
-        {/* ── MOBILE: topo — monogram ── */}
-        <div className="md:hidden relative z-10 flex flex-col items-center pt-[200px] text-paper">
+        {/* ── MOBILE: topo — monogram (posição independente) ── */}
+        <div className="md:hidden absolute left-0 right-0 z-10 flex flex-col items-center text-paper" style={{ top: 50 }}>
           <HeroMonogram boxSize={160} letterSize={100} dotSize={32} />
         </div>
 
-        {/* ── MOBILE: centro — data + countdown ── */}
-        <div className="md:hidden relative z-10 flex-1 flex flex-col items-center justify-center text-paper px-6 translate-y-32">
+        {/* ── MOBILE: data + countdown (posição independente) ── */}
+        <div className="md:hidden absolute left-0 right-0 z-10 flex flex-col items-center text-paper px-6" style={{ top: 600 }}>
           <HeroData className="text-[16px] bg-black/25 px-6 py-2" />
           <div className="mt-6 w-full">
             <HeroCountdown countdown={countdown} gapClass="gap-2" />
