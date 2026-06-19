@@ -63,7 +63,6 @@ export default function HomePage() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [toast, setToast] = useState({ visible: false, title: '', sub: '' })
   const [given, setGiven] = useState<string[]>([])
-  const [rsvpDone, setRsvpDone] = useState(false)
   const [pixAmount, setPixAmount] = useState(100)
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -76,8 +75,6 @@ export default function HomePage() {
     try {
       const g = JSON.parse(localStorage.getItem('gifts') || '[]')
       setGiven(g)
-      const r = localStorage.getItem('rsvp_im')
-      if (r) setRsvpDone(true)
     } catch (_) {}
   }, [])
 
@@ -136,7 +133,8 @@ export default function HomePage() {
     const url = `${base}?usp=pp_url&entry.1369867619=${encodeURIComponent(nome)}&entry.2110350968=${encodeURIComponent(acompanhante)}`
     window.open(url, '_blank')
     try { localStorage.setItem('rsvp_im', JSON.stringify({ nome, acompanhante, at: Date.now() })) } catch (_) {}
-    setRsvpDone(true)
+    e.currentTarget.reset()
+    showToast('Presença confirmada', '— obrigado, mal podemos esperar! 💚')
   }
 
   const handlePhoneMask = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,25 +213,22 @@ export default function HomePage() {
           />
         </div>
 
-        {/* ── MOBILE: topo — data + monogram ── */}
-        <div className="md:hidden relative z-10 flex flex-col items-center pt-[110px] text-paper">
-          <HeroData className="text-[16px] bg-black/25 px-6 py-2" />
-          <div className="mt-4">
-            <HeroMonogram boxSize={120} svgWidth={48} letterSize={38} dotSize={14} pl={16} />
-          </div>
+        {/* ── MOBILE: topo — monogram ── */}
+        <div className="md:hidden relative z-10 flex flex-col items-center pt-[200px] text-paper">
+          <HeroMonogram boxSize={160} letterSize={100} dotSize={32} />
         </div>
 
-        {/* ── MOBILE: spacer ── */}
-        <div className="md:hidden flex-1" />
-
-        {/* ── MOBILE: fundo — countdown ── */}
-        <div className="md:hidden relative z-10 px-6 pb-16 text-paper w-full">
-          <HeroCountdown countdown={countdown} gapClass="gap-2" />
+        {/* ── MOBILE: centro — data + countdown ── */}
+        <div className="md:hidden relative z-10 flex-1 flex flex-col items-center justify-center text-paper px-6 translate-y-32">
+          <HeroData className="text-[16px] bg-black/25 px-6 py-2" />
+          <div className="mt-6 w-full">
+            <HeroCountdown countdown={countdown} gapClass="gap-2" />
+          </div>
         </div>
 
         {/* ── DESKTOP: centro — monogram + data + countdown ── */}
         <div className="hidden md:flex relative z-10 flex-1 flex-col items-center justify-center text-paper px-6">
-          <HeroMonogram boxSize={400} svgWidth={180} letterSize={140} dotSize={58} pl={48} />
+          <HeroMonogram boxSize={400} letterSize={280} dotSize={110} />
           <HeroData className="text-[26px] mt-7" />
           <div className="mt-12 w-full max-w-2xl">
             <HeroCountdown countdown={countdown} gapClass="gap-6" />
@@ -635,44 +630,36 @@ export default function HomePage() {
             </p>
           </div>
 
-          {!rsvpDone ? (
-            <form
-              id="rsvp-form"
-              onSubmit={handleRSVP}
-              noValidate
-              className="space-y-7 bg-cream p-8 md:p-12 shadow-sm border border-sand"
-            >
-              <div className="field">
-                <label className="eyebrow text-eucalDk block mb-2">Nome completo *</label>
-                <input
-                  type="text"
-                  name="entry.1369867619"
-                  required
-                  placeholder="Digite seu nome completo"
-                />
-              </div>
-              <div className="field">
-                <label className="eyebrow text-eucalDk block mb-2">Vai levar acompanhante? Se sim, qual o nome?</label>
-                <input
-                  type="text"
-                  name="entry.2110350968"
-                  placeholder="Nome do acompanhante (deixe em branco se não)"
-                />
-              </div>
-              <button type="submit" className="w-full bg-eucal text-paper py-5 text-[12px] tracking-[0.32em] uppercase font-medium hover:bg-eucalDk transition">
-                Confirmar Presença
-              </button>
-              <p className="text-center text-mute text-xs italic">
-                Ao confirmar, você será redirecionado para o formulário oficial.
-              </p>
-            </form>
-          ) : (
-            <div className="text-center p-12 bg-cream border border-gold/40">
-              <div className="font-script text-7xl text-eucalDk leading-none" style={{ fontFamily: "'Italianno', cursive" }}>Obrigado</div>
-              <h3 className="font-serif italic text-2xl mt-3" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Sua presença está confirmada.</h3>
-              <p className="mt-3 text-inkSoft italic">Mal podemos esperar para celebrar com você na Cerimônia.</p>
+          <form
+            id="rsvp-form"
+            onSubmit={handleRSVP}
+            noValidate
+            className="space-y-7 bg-cream p-8 md:p-12 shadow-sm border border-sand"
+          >
+            <div className="field">
+              <label className="eyebrow text-eucalDk block mb-2">Nome completo *</label>
+              <input
+                type="text"
+                name="entry.1369867619"
+                required
+                placeholder="Digite seu nome completo"
+              />
             </div>
-          )}
+            <div className="field">
+              <label className="eyebrow text-eucalDk block mb-2">Vai levar acompanhante? Se sim, qual o nome?</label>
+              <input
+                type="text"
+                name="entry.2110350968"
+                placeholder="Nome do acompanhante (deixe em branco se não)"
+              />
+            </div>
+            <button type="submit" className="w-full bg-eucal text-paper py-5 text-[12px] tracking-[0.32em] uppercase font-medium hover:bg-eucalDk transition">
+              Confirmar Presença
+            </button>
+            <p className="text-center text-mute text-xs italic">
+              Ao confirmar, você será redirecionado para o formulário oficial.
+            </p>
+          </form>
         </div>
       </section>
 
@@ -702,42 +689,18 @@ export default function HomePage() {
 
 /* ── Hero sub-components ── */
 
-function HeroMonogram({ boxSize, svgWidth, letterSize, dotSize, pl }: {
-  boxSize: number; svgWidth: number; letterSize: number; dotSize: number; pl: number
+function HeroMonogram({ boxSize, letterSize, dotSize }: {
+  boxSize: number; letterSize: number; dotSize: number
 }) {
   return (
     <div className="relative" style={{ width: boxSize, height: boxSize }}>
-      <div className="absolute inset-0 border border-paper/90" />
-      <svg
-        className="absolute top-1/2 -translate-y-1/2 text-paper"
-        style={{ left: -12, width: svgWidth }}
-        viewBox="0 0 100 240"
-        aria-hidden="true"
-      >
-        <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round">
-          <path d="M50 232 L50 14" />
-          <ellipse cx="38" cy="210" rx="11" ry="3.6" transform="rotate(-30 38 210)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="33" cy="178" rx="13" ry="4" transform="rotate(-42 33 178)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="37" cy="148" rx="11" ry="3.6" transform="rotate(-26 37 148)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="34" cy="116" rx="12" ry="4" transform="rotate(-38 34 116)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="39" cy="84" rx="10" ry="3.4" transform="rotate(-22 39 84)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="36" cy="54" rx="11" ry="3.6" transform="rotate(-32 36 54)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="62" cy="196" rx="11" ry="3.6" transform="rotate(30 62 196)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="67" cy="164" rx="13" ry="4" transform="rotate(42 67 164)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="63" cy="132" rx="11" ry="3.6" transform="rotate(26 63 132)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="66" cy="100" rx="12" ry="4" transform="rotate(38 66 100)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="61" cy="70" rx="10" ry="3.4" transform="rotate(22 61 70)" fill="currentColor" opacity="0.85" />
-          <ellipse cx="64" cy="40" rx="11" ry="3.6" transform="rotate(32 64 40)" fill="currentColor" opacity="0.85" />
-          <circle cx="50" cy="14" r="2.6" fill="currentColor" />
-        </g>
-      </svg>
-      <div className="absolute inset-0 flex items-center justify-center" style={{ paddingLeft: pl }}>
+      <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className="font-serif text-paper leading-none flex items-center"
-          style={{ gap: 4, textShadow: '0 2px 24px rgba(0,0,0,0.4)', fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="text-paper leading-none flex items-center"
+          style={{ gap: 4, textShadow: '0 2px 24px rgba(0,0,0,0.4)', fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}
         >
           <span style={{ fontSize: letterSize }} className="tracking-tight">I</span>
-          <span style={{ fontSize: dotSize }} className="text-paper/80 -translate-y-2">·</span>
+          <span style={{ fontSize: dotSize }} className="text-paper/80">&amp;</span>
           <span style={{ fontSize: letterSize }} className="tracking-tight">A</span>
         </div>
       </div>
