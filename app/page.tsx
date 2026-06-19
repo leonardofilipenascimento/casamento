@@ -325,7 +325,7 @@ export default function HomePage() {
             {[
               { time: '15:30', title: 'Recepção dos convidados', icon: '☘' },
               { time: '16:30', title: 'Cerimônia religiosa', icon: '✝' },
-              { time: '17:30', title: 'Sessão de fotos & coquetel', icon: '❝' },
+              { time: '17:30', title: 'Sessão de fotos', icon: '❝' },
               { time: '19:00', title: 'Jantar de boas-vindas', icon: '🍽' },
               { time: '21:00', title: 'Encerramento', icon: '🥂' },
               // { time: '22:30', title: 'Pista aberta', joke: 'Política de uso: pode dançar mal, não pode dançar pouco.', icon: '♪' },
@@ -596,10 +596,6 @@ export default function HomePage() {
             </article>
           </div>
 
-          <p className="text-center mt-16 text-inkSoft italic max-w-xl mx-auto reveal">
-            A lista oficial completa fica no rodapé — esses são apenas os itens{' '}
-            <em className="text-eucalDk not-italic">indispensáveis</em> para a paz do lar.
-          </p>
         </div>
       </section>
 
