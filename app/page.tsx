@@ -219,7 +219,7 @@ export default function HomePage() {
         </div>
 
         {/* ── MOBILE: data + countdown (posição independente) ── */}
-        <div className="md:hidden absolute left-0 right-0 z-10 flex flex-col items-center text-paper px-6" style={{ top: 600 }}>
+        <div className="md:hidden absolute left-0 right-0 z-10 flex flex-col items-center text-paper px-6" style={{ top: 520 }}>
           <HeroCountdown countdown={countdown} gapClass="gap-2" />
           <div className="mt-6 w-full">
             <HeroData className="text-[20px] bg-black/25 px-6 py-2" />
