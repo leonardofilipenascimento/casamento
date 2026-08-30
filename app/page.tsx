@@ -124,8 +124,14 @@ export default function HomePage() {
     showToast(`R$ ${v.toFixed(0)} via Pix`, '— chave copiada! muito obrigado 💚')
   }
 
+  const rsvpDeadline = new Date('2026-08-15T23:59:59-03:00')
+
   const handleRSVP = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (Date.now() > rsvpDeadline.getTime()) {
+      showToast('Prazo encerrado! O período para confirmar sua presença em nosso casamento já terminou')
+      return
+    }
     const data = new FormData(e.currentTarget)
     const nome = (data.get('entry.1369867619') as string) || ''
     const acompanhante = (data.get('entry.2110350968') as string) || ''
